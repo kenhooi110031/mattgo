@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x' # or the version you need
 
       - name: Install dependencies
-        run: pip install sgfmill flask flask_socketio
+        run: pip install sgfmill flask flask_socketio openai
 
       - name: Run server script
         run: python .github/workflows/server.py
