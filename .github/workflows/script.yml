@@ -21,11 +21,8 @@ jobs:
       - name: Install dependencies
         run: pip install sgfmill flask flask_socketio openai
 
-      - name: Verify KataGo exists
-        run: ls -la .github/workflows/Katago/ #Add this line to debug
-
       - name: Grant execute permissions to KataGo
-        run: chmod +x .github/workflows/Katago/katago
+        run: chmod +x .github/workflows/Katago/katago.exe
 
       - name: Run server script
         run: python .github/workflows/server.py
