@@ -21,11 +21,20 @@ jobs:
       - name: Install dependencies
         run: pip install sgfmill flask flask_socketio openai
 
-      - name: Grant execute permissions to KataGo
+      - name: Download Katago
+        run: |
+          # Replace with the actual download link for your KataGo binary
+          wget https://github.com/lightvector/KataGo/releases/download/v1.14.0/kata1-v1.14.0-opencl-ubuntu-x64.zip
+          unzip kata1-v1.14.0-opencl-ubuntu-x64.zip
+          mkdir -p .github/workflows/Katago/kataexe
+          mv kata1-v1.14.0-opencl-ubuntu-x64/katago .github/workflows/Katago/kataexe/katago.exe
+          chmod +x .github/workflows/Katago/kataexe/katago.exe
+
+      - name: Grant execute permissions to KataGo Folder.
         run: chmod +x .github/workflows/Katago/kataexe
 
       - name: Verify KataGo permissions
-        run: ls -l .github/workflows/Katago/kataexe
+        run: ls -l .github/workflows/Katago/kataexe/katago.exe
 
       - name: Run server script
         run: python .github/workflows/server.py
