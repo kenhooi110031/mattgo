@@ -569,7 +569,7 @@ if __name__ == "__main__":
 
     # Build paths relative to your application
     katago_dir = base_dir / "Katago"
-    katago_path = katago_dir / "katago"
+    katago_path = katago_dir / "katago.exe"
     config_path = katago_dir / "analysis_example.cfg"
     model_path = katago_dir / "g170-b6c96-s175395328-d26788732.bin.gz"
 
