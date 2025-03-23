@@ -21,10 +21,10 @@ jobs:
       - name: Install dependencies
         run: pip install sgfmill flask flask_socketio openai
 
-      - name: Download Katago
+      - name: Download KataGo
         run: |
-          # Replace with the CORRECT download link!
-          wget https://github.com/lightvector/KataGo/releases/download/v1.14.0/katago-v1.14.0-opencl-ubuntu-x64.zip
+          # Replace with the ABSOLUTELY CORRECT download link!
+          wget https://github.com/lightvector/KataGo/releases/download/v1.14.0/katago-v1.14.0-opencl-ubuntu-x64.zip #THIS IS STILL AN EXAMPLE!
           unzip katago-v1.14.0-opencl-ubuntu-x64.zip
           mkdir -p .github/workflows/Katago/kataexe
           mv katago-v1.14.0-opencl-ubuntu-x64/katago .github/workflows/Katago/kataexe/katago.exe
