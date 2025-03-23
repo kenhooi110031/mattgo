@@ -1,0 +1,238 @@
+/* AI Hint Styles */
+.ai-hint-container {
+    position: relative;
+    display: inline-flex;
+    margin-left: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.ai-hint-toggle {
+    background-color: rgba(90, 158, 111, 0.1);
+    color: #5a9e6f;
+    border: 1px solid rgba(90, 158, 111, 0.3);
+    border-radius: 18px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 13px;
+    position: relative;
+    z-index: 10;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.ai-hint-toggle:hover {
+    background-color: rgba(90, 158, 111, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(90, 158, 111, 0.2);
+}
+
+.ai-hint-toggle:active {
+    transform: translateY(0);
+}
+
+.ai-hint-toggle::before {
+    content: '💡';
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    line-height: 1;
+    margin-bottom: 1px; /* Adjust the emoji up slightly */
+}
+
+.ai-hint-toggle span {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.ai-hint-toggle.active::before {
+    transform: rotate(360deg) scale(1.2);
+}
+
+/* Panel arrow/pointer */
+.ai-hint-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 20px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    transform: rotate(45deg);
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.05);
+    z-index: -1;
+}
+
+.ai-hint-panel {
+    position: absolute;
+    bottom: calc(100% + 15px);
+    left: 0;
+    width: 320px; /* Increased width */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: bottom left;
+    transform: scale(0.85) translateY(10px);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.ai-hint-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+    pointer-events: all;
+}
+
+.ai-hint-content {
+    padding: 18px;
+    position: relative;
+}
+
+.ai-hint-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ai-hint-title {
+    font-weight: 500;
+    color: #444;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.ai-hint-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #5a9e6f;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.ai-hint-close {
+    font-size: 16px;
+    line-height: 1;
+    color: #aaa;
+    background: none;
+    border: none;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ai-hint-close:hover {
+    color: #777;
+}
+
+.ai-suggestion {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.ai-suggestion #ai-suggested-move {
+    display: inline-block;
+    background-color: rgba(90, 158, 111, 0.15);
+    color: #5a9e6f;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-left: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.ai-explanation {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 14px;
+    background: rgba(90, 158, 111, 0.05);
+    border-radius: 10px;
+    border-left: 3px solid rgba(90, 158, 111, 0.3);
+    min-height: 60px; /* Ensure enough space for content */
+}
+
+/* Loading animation for explanation */
+@keyframes pulseText {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.ai-explanation.loading {
+    animation: pulseText 1.5s infinite;
+}
+
+/* Animation for content elements */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ai-hint-title,
+.ai-suggestion,
+.ai-explanation {
+    opacity: 0;
+}
+
+.ai-hint-panel.active .ai-hint-title,
+.ai-hint-panel.active .ai-suggestion,
+.ai-hint-panel.active .ai-explanation {
+    animation: fadeSlideUp 0.5s forwards;
+}
+
+.ai-hint-panel.active .ai-hint-title {
+    animation-delay: 0.1s;
+}
+
+.ai-hint-panel.active .ai-suggestion {
+    animation-delay: 0.2s;
+}
+
+.ai-hint-panel.active .ai-explanation {
+    animation-delay: 0.3s;
+}
+
+/* Special styling for stone colors */
+#ai-suggested-move[data-color="black"] {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+#ai-suggested-move[data-color="white"] {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}

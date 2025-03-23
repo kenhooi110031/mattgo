@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>AI Go Board - LinGo</title>
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='tenuki.min.css') }}">-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='board-styles.css') }}">-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='app-board-styles.css') }}">-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar-collapse.css') }}">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='tenuki.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='board/board-styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app-styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar-collapse.css') }}">
+    <!-- Add Socket.IO client library -->
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+</head>
+<body>
+<div class="app-container">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>LinGo</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="/" class="nav-item active" id="nav-board">
+                <div class="nav-icon">◯</div>
+                <span>AI Go Board</span>
+            </a>
+            <a href="/learn" class="nav-item" id="nav-learn">
+                <div class="nav-icon">📚</div>
+                <span>Learn</span>
+            </a>
+            <a href="/rules" class="nav-item" id="nav-rules">
+                <div class="nav-icon">📜</div>
+                <span>Go Rules</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="stone-display">
+                <div class="stone-indicator black-stone"></div>
+                <div class="stone-indicator white-stone"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div id="board-view">
+            <h1>AI Go Board</h1>
+
+            <div class="controls-container">
+                <div class="board-options">
+                    <div class="board-size-buttons">
+                        <button onclick="changeBoardSize(9)" id="size-9">9×9</button>
+                        <button onclick="changeBoardSize(13)" id="size-13">13×13</button>
+                        <button onclick="changeBoardSize(19)" id="size-19" class="active">19×19</button>
+                    </div>
+                    <button onclick="clearGame()" id="clear-board">Clear Board</button>
+                </div>
+
+                <!-- AI Player Controls Section -->
+                <div class="player-selection">
+                    <div class="player-options">
+                        <div class="player-option">
+                            <div class="stone-indicator black-stone"></div>
+                            <span>Black:</span>
+                            <div class="player-buttons">
+                                <button id="black-human" class="player-button active">Human</button>
+                                <button id="black-ai" class="player-button">AI</button>
+                            </div>
+                        </div>
+                        <div class="player-option">
+                            <div class="stone-indicator white-stone"></div>
+                            <span>White:</span>
+                            <div class="player-buttons">
+                                <button id="white-human" class="player-button active">Human</button>
+                                <button id="white-ai" class="player-button">AI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="winrate-slider-container" id="winrate-container">
+                    <div class="winrate-labels">
+                        <div>Black: <span id="black-percentage">50.0</span>%</div>
+                        <div>White: <span id="white-percentage">50.0</span>%</div>
+                    </div>
+                    <div class="winrate-bar-container">
+                        <div class="winrate-bar" id="black-winrate-bar" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <!-- Score visualization (initially hidden) -->
+                <div class="score-visualization-container" id="score-container" style="display: none;">
+                    <div class="score-labels">
+                        <div>Black: <span id="black-score">0</span> points <span id="black-winner" style="display: none;">(Winner)</span></div>
+                        <div>White: <span id="white-score">0</span> points <span id="white-winner" style="display: none;">(Winner)</span></div>
+                    </div>
+                    <div class="score-bar-container">
+                        <div class="score-bar" id="score-bar" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <div id="board-container">
+                    <!-- Board will be created here -->
+                </div>
+
+                <div class="bottom-controls-area">
+                    <div id="turn-indicator">
+                        <span>Current Turn:</span>
+                        <div class="stone-indicator black-stone" id="black-indicator"></div>
+                        <div class="stone-indicator white-stone" id="white-indicator" style="display: none;"></div>
+                    </div>
+
+                    <div class="action-controls">
+                        <button onclick="game.pass()">Pass</button>
+                        <button onclick="undoMove()">Undo</button>
+                        <button onclick="showScore()" class="score-button">Calculate Score</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-container">
+    <footer>
+        Traditional Go - Elegant Simplicity
+    </footer>
+</div>
+
+<!--<script src="{{ url_for('static', filename='tenuki.min.js') }}"></script>-->
+<!--<script src="{{ url_for('static', filename='go-board-core.js') }}"></script>-->
+<!--<script src="{{ url_for('static', filename='go-board-ai.js') }}"></script>-->
+<!--<script src="{{ url_for('static', filename='sidebar-nav.js') }}"></script>-->
+<script src="{{ url_for('static', filename='tenuki.min.js') }}"></script>
+<script src="{{ url_for('static', filename='board/go-board-core.js') }}"></script>
+<script src="{{ url_for('static', filename='board/go-board-ai.js') }}"></script>
+<script src="{{ url_for('static', filename='sidebar-nav.js') }}"></script>
+</body>
+</html>
