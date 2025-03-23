@@ -21,15 +21,8 @@ jobs:
       - name: Install dependencies
         run: pip install sgfmill flask flask_socketio openai
 
-      - name: Download KataGo
-        run: |
-          # Replace with the CORRECT Windows download link!
-          curl -LO https://github.com/lightvector/KataGo/releases/download/v1.14.0/katago-v1.14.0-windows-x64.zip
-          Expand-Archive -Path katago-v1.14.0-windows-x64.zip -DestinationPath .\.github\workflows\Katago\kataexe
-          Move-Item -Path ".\.github\workflows\Katago\kataexe\katago-v1.14.0-windows-x64\katago.exe" -Destination ".\.github\workflows\Katago\kataexe\katago.exe"
-
-      - name: Verify KataGo permissions
-        run: ls -l .github\workflows\Katago\kataexe\katago.exe
+      - name: Verify KataGo exists
+        run: if exist .\.github\workflows\Katago\kataexe\katago.exe (echo "KataGo exists") ELSE (echo "KataGo does not exist" && exit /b 1)
 
       - name: Run server script
         run: python .github\workflows\server.py
