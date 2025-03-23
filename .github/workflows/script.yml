@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x' # or the version you need
 
       - name: Install dependencies
-        run: pip install sgfmill
+        run: pip install sgfmill flask     
 
       - name: Run server script
         run: python .github/workflows/server.py
