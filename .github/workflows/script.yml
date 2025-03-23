@@ -24,5 +24,8 @@ jobs:
       - name: Grant execute permissions to KataGo
         run: chmod +x .github/workflows/Katago/katago.exe
 
+      - name: try katago command
+        run: ./.github/workflows/Katago/katago.exe analysis -config ./.github/workflows/your_config.cfg -model ./your_model.bin
+
       - name: Run server script
         run: python .github/workflows/server.py
