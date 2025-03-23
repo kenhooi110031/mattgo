@@ -16,13 +16,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x' # or the version you need
+          python-version: '3.x'
 
       - name: Install dependencies
         run: pip install sgfmill flask flask_socketio openai
 
       - name: Grant execute permissions to KataGo
-        run: chmod +x .github/workflows/Katago/katago.exe
+        run: chmod +x .github/workflows/Katago/katago # Corrected line
 
       - name: Run server script
         run: python .github/workflows/server.py
