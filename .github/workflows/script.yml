@@ -23,11 +23,11 @@ jobs:
 
       - name: Download Katago
         run: |
-          # Replace with the actual download link for your KataGo binary
-          wget https://github.com/lightvector/KataGo/releases/download/v1.14.0/kata1-v1.14.0-opencl-ubuntu-x64.zip
-          unzip kata1-v1.14.0-opencl-ubuntu-x64.zip
+          # Replace with the CORRECT download link!
+          wget https://github.com/lightvector/KataGo/releases/download/v1.14.0/katago-v1.14.0-opencl-ubuntu-x64.zip
+          unzip katago-v1.14.0-opencl-ubuntu-x64.zip
           mkdir -p .github/workflows/Katago/kataexe
-          mv kata1-v1.14.0-opencl-ubuntu-x64/katago .github/workflows/Katago/kataexe/katago.exe
+          mv katago-v1.14.0-opencl-ubuntu-x64/katago .github/workflows/Katago/kataexe/katago.exe
           chmod +x .github/workflows/Katago/kataexe/katago.exe
 
       - name: Grant execute permissions to KataGo Folder.
