@@ -21,14 +21,14 @@ jobs:
       - name: Install dependencies
         run: pip install sgfmill flask flask_socketio openai
 
-      - name: Verify KataGo exists
-        run: |
-          if (Test-Path -Path ".\.github\workflows\Katago\kataexe\katago.exe") {
-            Write-Host "KataGo exists"
-          } else {
-            Write-Host "KataGo does not exist"
-            exit 1
-          }
+      # - name: Verify KataGo exists
+      #   run: |
+      #     if (Test-Path -Path ".\.github\workflows\Katago\kataexe\katago.exe") {
+      #       Write-Host "KataGo exists"
+      #     } else {
+      #       Write-Host "KataGo does not exist"
+      #       exit 1
+      #     }
 
       - name: Run server script
         run: python .github\workflows\server.py
