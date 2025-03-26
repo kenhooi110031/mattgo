@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: Ubuntu-latest
 
     steps:
       - name: Checkout codes
