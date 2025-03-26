@@ -28,7 +28,6 @@ jobs:
           else
             echo "KataGo does not exist"
             exit 1
-          fi
 
       - name: Run server script
         run: python .github/workflows/server.py
