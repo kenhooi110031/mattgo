@@ -16,18 +16,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.11.x'
 
       - name: Install dependencies
         run: pip install sgfmill flask flask_socketio openai
 
-      - name: Verify KataGo exists (Bash)
+      - name: Verify KataGo exists
         run: |
-          if [ -f "./.github/workflows/Katago/kataexe/katago.exe" ]; then
-            echo "KataGo exists"
-          else
-            echo "KataGo does not exist"
+          if (Test-Path -Path "./.github/workflows/Katago/kataexe/katago.exe") {
+            Write-Host "KataGo exists"
+          } else {
+            Write-Host "KataGo does not exist"
             exit 1
+          }
 
       - name: Run server script
         run: python .github/workflows/server.py
