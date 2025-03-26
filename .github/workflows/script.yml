@@ -23,7 +23,7 @@ jobs:
 
       # - name: Verify KataGo exists
       #   run: |
-      #     if (Test-Path -Path ".\.github\workflows\Katago\kataexe\katago.exe") {
+      #     if (Test-Path -Path "./.github/workflows/Katago/kataexe/katago.exe") {
       #       Write-Host "KataGo exists"
       #     } else {
       #       Write-Host "KataGo does not exist"
@@ -31,4 +31,4 @@ jobs:
       #     }
 
       - name: Run server script
-        run: python .github\workflows\server.py
+        run: python .github/workflows/server.py
